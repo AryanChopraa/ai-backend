@@ -8,7 +8,7 @@ const gptController = require('./controllers/gptController')
 
 dotenv.config();
 
-const port = 3000
+const port = process.env.PORT || 3000;
 const app = express()
 const server = require('http').createServer(app);
 const wss = new WebSocket.Server({ server });
@@ -60,6 +60,6 @@ wss.on('connection', function connection(ws) {
   });
 });
 
-server.listen(8080, function () {
-  console.log('Server started on port 8080');
+server.listen(process.env.PORT || 8080, function () {
+  console.log('Server started on port ' + (process.env.PORT || 8080));
 });
