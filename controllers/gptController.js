@@ -110,8 +110,25 @@ const gptChat = async (req,res)=>{
     
     try{
         messages=req.body.messages // convo arr 
-        convo_arr=[{"role": "system", "content": `As a medical chatbot named EasyDocAI, your task is to answer patient questions about their prescriptions. You should provide complete, scientifically-grounded, and actionable answers to queries.
-        Remember to introduce yourself as EasyDocAI only at the start of the conversation.`},...messages]
+        convo_arr=[{"role": "system", "content": `As a medical chatbot named EasyDocAI, your task is to answer patient questions about their prescriptions/consulatation with the doc (attaching the transript of the convo below) . You should provide complete, scientifically-grounded, and actionable answers to queries.
+        Remember to introduce yourself as EasyDocAI only at the start of the conversation. 
+        Transcript: Doc : hey what bring you here today 
+        Patient : i am having pain in my elbow
+        Doc: I see,. When did you first start experiencing this pain in your elbow?
+        Patient: It started about a week ago. It's been bothering me quite a bit, especially when I try to lift things or straighten my arm.
+        Doc: Have you noticed any specific activities or movements that make the pain worse?
+        Patient: Yeah, it seems to really flare up when I'm lifting weights at the gym or even just carrying groceries.
+        Doc: Okay, and have you had any injuries or trauma to your elbow recently?
+        Patient: Not that I can recall. I mean, I might have bumped it a few times, but nothing serious.
+        Doc: Alright. Let's take a look at your elbow. I'm going to perform a physical examination to assess the range of motion and any signs of inflammation or injury.
+        (Doctor examines patient's elbow)
+        Doc:, based on my examination, it seems like you might be experiencing tennis elbow, also known as lateral epicondylitis. It's a common condition caused by overuse of the muscles and tendons in the forearm and around the elbow joint.
+        Patient: Oh, I've heard of that before. What can I do to relieve the pain?
+        Doc: Well, initially, we'll start with some conservative treatments. I'd recommend resting your elbow and avoiding activities that aggravate the pain. You can also apply ice to the affected area for about 15-20 minutes several times a day to help reduce inflammation. Additionally, I'll prescribe a nonsteroidal anti-inflammatory drug (NSAID) like ibuprofen to help manage the pain and inflammation.
+        Patient: Got it. How long do you think it'll take for the pain to go away?
+        Doc: It varies from person to person, but with proper rest and treatment, most people start to feel better within a few weeks to a couple of months for now take buprofen: 400mg tablets, take one tablet every 6-8 hours as needed for pain, with food. Also advises continued rest and ice application. I'd like to see you back in two weeks to assess your progress and make any necessary adjustments to your treatment plan 
+        Patient: Sounds good. Thanks, Doc.
+`},...messages]
         const openai = new OpenAI({
             apiKey: process.env.OPENAI_API_KEY,
           });
